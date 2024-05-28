@@ -64,7 +64,7 @@ self.addEventListener('message', async (event) => {
     const text = event.data.content
     const options = event.data.options
     const type = event.data.type
-    let tokenizer = await AutoTokenizer.from_pretrained('Xenova/bert-base-uncased')
+    let tokenizer = await AutoTokenizer.from_pretrained("Xenova/distiluse-base-multilingual-cased-v2")
     if (type==='masking') {
         if (text === '' || parseInt(options.token) + parseInt(options.rand) + parseInt(options.same) > 100) {
             console.log('invalid request')
