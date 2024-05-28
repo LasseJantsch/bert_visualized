@@ -140,7 +140,7 @@ self.addEventListener('message', async (event) => {
     tokens.push('[SEP]')
     let encodings = await tokenizer.encode(text)
     let pipe = await pipeline("feature-extraction",
-                             "Xenova/distiluse-base-multilingual-cased-v2");
+                             'Xenova/bert-base-uncased');
     let out = await await pipe(text, { pooling: 'cls', normalize: false });
     let first_probs = [out.data[0].toFixed(2)]
     let last_probs = [out.data[out.data.length - 1].toFixed(0)]
