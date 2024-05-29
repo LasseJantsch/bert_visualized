@@ -64,7 +64,7 @@ self.addEventListener('message', async (event) => {
     const text = event.data.content
     const options = event.data.options
     const type = event.data.type
-    let tokenizer = await AutoTokenizer.from_pretrained("Xenova/distiluse-base-multilingual-cased-v2")
+    let tokenizer = await AutoTokenizer.from_pretrained('Xenova/bert-base-uncased')
     if (type==='masking') {
         if (text === '' || parseInt(options.token) + parseInt(options.rand) + parseInt(options.same) > 100) {
             console.log('invalid request')
@@ -140,7 +140,7 @@ self.addEventListener('message', async (event) => {
     tokens.push('[SEP]')
     let encodings = await tokenizer.encode(text)
     let pipe = await pipeline("feature-extraction",
-                             'Xenova/bert-base-uncased');
+                             "Xenova/distiluse-base-multilingual-cased-v2");
     let out = await await pipe(text, { pooling: 'cls', normalize: false });
     let first_probs = [out.data[0].toFixed(2)]
     let last_probs = [out.data[out.data.length - 1].toFixed(0)]
